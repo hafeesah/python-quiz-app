@@ -1,0 +1,48 @@
+  :root{--accent:#0b79d0;--bg:#f7f9fb;--card:#fff}
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); margin:0; padding:24px}
+    body{background-color:#ad94b1}
+    .quiz-container{max-width:800px;margin:0 auto;background:var(--card);padding:24px;border-radius:12px;box-shadow:0 6px 18px rgba(11,25,40,0.08)}
+    h1{margin:0 0 18px;font-size:1.5rem}
+    .question-block{padding:14px;border-radius:8px;border:1px solid #eee;margin-bottom:12px}
+    .question{margin:0 0 8px;font-weight:600}
+    .options label{display:block;margin:6px 0;cursor:pointer;  padding: 6px;
+  border-radius: 6px;}
+    .submit-btn{margin-top:8px;padding:8px 12px;border:0;background:var(--accent);color:#fff;border-radius:6px;cursor:pointer}
+    .submit-btn[disabled]{opacity:0.5;cursor:not-allowed}
+    .feedback{margin-top:10px;font-weight:600}
+    .correct{color:green}
+    .wrong{color:#c0392b}
+    .score{margin-top:18px;padding:12px;background:#f1f8ff;border:1px solid #dbeefe;border-radius:8px}
+
+/* Correct & wrong highlights */
+.correct-option {
+  background-color: #d4edda; /* light green */
+}
+
+.wrong-option {
+  background-color: #f8d7da; /* light red */
+}
+
+/* Icons next to answers */
+.option-icon {
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+/* Feedback text */
+.option-feedback {
+  margin-left: 10px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+pre {
+  background: #c58e70; /* dark IDE-like background */
+  color: #f8f8f2;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: "Fira Code", monospace;
+  font-size: 15px;
+  overflow-x: auto;
+}
