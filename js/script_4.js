@@ -5,42 +5,20 @@ const victorySound = new Audio("sounds/victory.mp3");
 
 // Questions
 const questions = [
-{
-    question: "What keyword is used for multiple conditions in Python?",
-    options: ["elseif", "elif", "else if", "then"],
-    answer: "elif",
-    explanation: {
-      "elseif": "Python uses elif, not elseif.",
-      "elif": "correct keyword for else-if conditions.",
-      "else if": "This is Javascript or C syntax not Python.",
-      "then": "Not used in Python conditionals."
-    }
-  },
   {
-    question: "What is returned by the following lines of code?",
-    code: `print((True and True) or (False and True))`,
-    options: ["true", "True", "False", "false"],
-    answer: "True",
-    explanation: {
-      "true": "Python is case-sensitive, true is not a boolean value.",
-      "True": "True and True will produce True, False and True will give False; the result of True or False is True.",
-      "False": "True and True will produce True, False and True will give False; the result of True or False is True not True.",
-      "false": "Python is case-sensitive, false is not a boolean value."
-    }
-  },
-  {
-    question: "What will be the output of this code?",
-    code: `x = 5
-y = 10
-if x < y:
-   print("x is smaller")`,
-    options: ["y is smaller", "x is smaller", "Error", "No output"],
-    answer: "x is smaller",
-    explanation: {
-      "y is smaller": "y is greater than x, so the condition print False.",
-      "x is smaller": "x is smaller than y so the condition print True.",
-      "Error": "There is no syntax error.",
-      "No output": "There is output, because the condition is True."
+   question: "How can you make an infinite loop in Python?",
+   options: [
+    "while True:",
+    "for i in range(infinity):",
+    "while (1 == 2):",
+    "while 0:"
+  ],
+  answer: "while True:",
+  explanation: {
+    "while True:": "The condition True is always true, creating an infinite loop.",
+    "for i in range(infinity):": "Python’s range() cannot take ‘infinity’.",
+    "while (1 == 2):": "This condition is always false.",
+    "while 0:": "0 is treated as False, so this never runs."
     }
   },
   {
@@ -60,113 +38,148 @@ print(a)`,
     }
   },
   {
-    question: "Which of the following statement will return to True?",
-    options: [
-      "print( 9 < 13)",
-      "print(9 != 13)",
-      "print(9 <= 13)",
-      "All of the above"
-    ],
-    answer: "All of the above",
-    explanation: {
-      "print( 9 < 13)": "It is True but not the only one.",
-      "print(9 != 13)": "It is True but not the only one.",
-      "print(9 <= 13)": "It is True but not the only one.",
-      "All of the Above": "Every option is correct."
+    question: "What will be the output of this code?",
+  code: `count = 0
+while count < 3:
+    print(count)
+    count += 1`,
+  options: ["0 1 2", "1 2 3", "0 1 2 3", "Infinite loop"],
+  answer: "0 1 2",
+  explanation: {
+    "0 1 2": "The loop runs while count < 3, printing 0, 1, and 2.",
+    "1 2 3": "The loop starts at 0, not 1.",
+    "0 1 2 3": "The loop condition stops before count reaches 3.",
+    "Infinite loop": "The counter increases by 1 each time, so it stops properly."
     }
   },
- {
-  question: "Which of these values are considered False in Python?",
-  options: [
-    "0",
-    "'' (empty string)",
-    "[] (empty list)",
-    "All of the above"
-  ],
-  answer: "All of the above",
+  {
+   question: "What is the output of the following for loop?",
+  code: `for i in range(1, 5):
+    print(i)`,
+  options: ["1 2 3 4 5", "0 1 2 3 4", "1 2 3 4", "None of the above"],
+  answer: "1 2 3 4",
   explanation: {
-    "0": "zero is a False value, but not the only one amongst the option.",
-    "'' (empty string)": "empty strings are considered False, but not the only one amongst the option",
-    "[] (empty list)": "empty containers evaluate to False, but not the only one amongst the option",
-    "All of the above": "all these are considered False in conditionals, but not the only one amongst the option"
+    "1 2 3 4 5": "range(1,5) goes up to but does not include 5.",
+    "0 1 2 3 4": "Starts at 1, not 0.",
+    "1 2 3 4": "Correct. range(1,5) gives 1,2,3,4.",
+    "None of the above": "There is a correct answer above."
+    }
+  },
+  {
+  question: "Which statement will immediately end a loop?",
+  options: ["stop", "exit", "break", "continue"],
+  answer: "break",
+  explanation: {
+    "stop": "Not a Python keyword for loops.",
+    "exit": "Can exit the program but not just the loop.",
+    "break": "Correct. ‘break’ stops the loop immediately.",
+    "continue": "Skips to the next iteration but doesn’t stop the loop."
+  }
+  },
+ {
+  question: "What will be the final value i in the following program?",
+  code: `n = 3
+i = 1
+
+while i <= n:
+  i = i + 1
+print(i)`,
+  options: ["3", "4", "1", "None of the above"],
+  answer: "4",
+  explanation: {
+    "3": "Not quite right.",
+    "4": "i was initially stored has 1 and the with each iteration, it increases by 1 till the condition is met.",
+    "1": "Not quite right",
+    "None of the above": "There is an answer in the above options."
   }
 },
  {
-  question: "Which of these statements will print 'Yes'?",
-  code: `x = 7
-if x == 7 or x > 10:
-    print("Yes")`,
+  question: "What will this code print?",
+  code: `for i in range(3):
+    print("Hello")`,
   options: [
-    "x = 5",
-    "x = 7",
-    "x = 10",
-    "None of the above"
+    "Prints Hello once",
+    "Prints Hello three times",
+    "Prints Hello infinitely",
+    "Error"
   ],
-  answer: "x = 7",
+  answer: "Prints Hello three times",
   explanation: {
-    "x = 5": "Condition is False (5 is not 7 or greater than 10).",
-    "x = 7": "Condition is True, because x == 7.",
-    "x = 10": "False, since 10 is not greater than 10 (it is equal).",
-    "None of the above": "x = 7 works, so this is incorrect."
+    "Prints Hello once": "The loop runs three times (0,1,2).",
+    "Prints Hello three times": "It prints Hello on each iteration.",
+    "Prints Hello infinitely": "range(3) is finite.",
+    "Error": "The syntax is valid."
   }
   },
   {
-    question: "What is the output of this code",
-    code: `x = 20
-if (x % 2 ==0):
-    print("Divisible by 2")
-else:
-    print("Not divisible by 2")`,
-    options: ["Not divisible by 2", "Error", "Divisible by 2", "None of the above"],
-    answer: "Divisible by 2",
-    explanation: {
-      "Not divisible by 2": "20 divided by 2 is 10 remainder 0.",
-      "Error": "The code is right so no error message.",
-      "Divisible by 2": "20 divided by 2 is 10 remainder 0.",
-      "None of the above": "One of the option is correct."
+   question: "Which of the following loops will never execute its body?",
+   code: `x = 10
+while x < 5:
+    print(x)`,
+   options: [
+    "This one",
+    "while True:",
+    "for i in range(5):",
+    "while x > 0:"
+  ],
+   answer: "This one",
+   explanation: {
+    "This one": "x = 10, and 10 < 5 is false from the start.",
+    "while True:": "This one runs infinitely.",
+    "for i in range(5):": "Runs five times.",
+    "while x > 0:": "Would run as long as x > 0."
     }
   },
   {
-    question: "Which of the following displays False?",
-    options: ["print(not False)",
-              "print(not (5!=5))",
-              "print(not(5 == 5))",
-              "None of the above"],
-    answer: "print(not(5 == 5))",
-    explanation: {
-      "print(not False)": "This expression evaluates to True because the operand is False .",
-      "print(not (5!=5))": "This expression also evaluates to True because (5 !=5) = False.",
-      "print(not(5 == 5))": "Since 5 == 5 is True , so therefore the expression will be False.",
-      "None of the above": "There is an answer in the option."
-    }
-  },
-  {
-    question: "When do we use the 'pass' statement?",
-    options: ["When constructing a body that does nothing",
-         "When passing paramers to functions", 
-         "When passing the control to other programs",
-          "None of the above"],
-    answer: "When constructing a body that does nothing",
-    explanation: {
-      "When constructing a body that does nothing": "The 'pass' statement are used inside the body of loops, functions that you are not ready to run.",
-      "When passing parameters to function": "'pass' is not used for passing parameters to function.",
-      "When passing the control to other programs": "Not used for this purpose.",
-      "None of the above": "There is a definite answer in the options."
-    }
-  },
-  {
-  question: "What will this code output?",
-  code: `a = 10
-b = 20
-if not a > b:
-    print("a is not greater than b")`,
-  options: ["a is not greater than b", "a is greater than b", "Error", "No output"],
-  answer: "a is not greater than b",
+    question: "What does range(5, 0, -1) produce?",
+    options: [
+    "5 4 3 2 1",
+    "0 1 2 3 4 5",
+    "Error",
+    "1 2 3 4 5"
+  ],
+  answer: "5 4 3 2 1",
   explanation: {
-    "a is not greater than b": "Since a > b is False, not False is True, so the message prints.",
-    "a is greater than b": "That would be False.",
-    "Error": "Valid syntax.",
-    "No output": "There is output."
+    "5 4 3 2 1": "Starts at 5, stops before 0, steps by -1.",
+    "0 1 2 3 4 5": "That would be range(6).",
+    "Error": "Negative step is allowed.",
+    "1 2 3 4 5": "That would be range(1,6)."
+    }
+  },
+  {
+    question: "What will be the output of the following code?",
+    code:`str1 = 'Hello'
+for s in str1:
+    if s == 'o'
+       print(s)
+    else:
+       continue`,
+    options: ["o", "0", "Error", "s"],
+    answer: "o",
+    explanation: {
+      "o": "The for loop will iterate over the string str1 until the condition matches the value of s at a particular iteration, then it will be displayed.",
+      "0": "Not quite right.",
+      "Error": "The code is correct.",
+      "s": "s will only be printed if there was a quotation mark to represent a string."
+    }
+  },
+  {
+  question: "What is the output of the following code?",
+  code: `for i in range(2):
+    for j in range(2):
+        print(i, j)`,
+  options: [
+    "(0,0) (0,1) (1,0) (1,1)",
+    "(1,1) (1,2) (2,1) (2,2)",
+    "(0,0) (1,1)",
+    "Error"
+  ],
+  answer: "(0,0) (0,1) (1,0) (1,1)",
+  explanation: {
+    "(0,0) (0,1) (1,0) (1,1)": "Nested loops print all combinations of i and j.",
+    "(1,1) (1,2) (2,1) (2,2)": "range(2) gives only 0 and 1.",
+    "(0,0) (1,1)": "Missing pairs.",
+    "Error": "Code runs fine."
   }
   },
   {
