@@ -67,12 +67,12 @@ subtract(num1, 10)`,
       "type()",
       "All of the above"
     ],
-    answer: "All of the above",
+    answer:"All of the above",
     explanation: {
       "print()": "It is a bulit-in but not the only one.",
       "input()": "It is a bulit in but not the only one.",
       "type()": "It is a built-in but not the only one.",
-      "All of the Above": "Every option is correct."
+      "All of the above": "Every option is correct."
     }
   },
   {
@@ -172,16 +172,16 @@ print(result)
     }
   }
 ];
-
 let currentIndex = 0;
 let correctCount = 0;
+let userAnswers = []; // ✅ Added this missing array
 
 const quizEl = document.getElementById("quiz");
 const scoreEl = document.getElementById("score");
 
 // Show one question at a time
 function showQuestion(index) {
-  quizEl.innerHTML = ""; // clear old content
+  quizEl.innerHTML = "";
 
   const q = questions[index];
   const section = document.createElement("section");
@@ -192,7 +192,6 @@ function showQuestion(index) {
   questionP.textContent = `Question ${index + 1} of ${questions.length}: ${q.question}`;
   section.appendChild(questionP);
 
-  // Show code if exists
   if (q.code) {
     const codeBlock = document.createElement("pre");
     const codeEl = document.createElement("code");
@@ -219,110 +218,119 @@ function showQuestion(index) {
     const span = document.createElement("span");
     span.textContent = " " + opt;
 
-    const feedbackSpan = document.createElement("span");
-    feedbackSpan.className = "option-feedback";
-    feedbackSpan.style.display = "none";
-
-    const iconSpan = document.createElement("span");
-    iconSpan.className = "option-icon";
-
     label.appendChild(radio);
     label.appendChild(span);
-    label.appendChild(iconSpan);
-    label.appendChild(feedbackSpan);
     optionsDiv.appendChild(label);
   });
 
   const btn = document.createElement("button");
   btn.className = "submit-btn";
-  btn.type = "button";
   btn.textContent = "Submit";
-
-  const nextBtn = document.createElement("button");
-  nextBtn.className = "next-btn";
-  nextBtn.type = "button";
-  const isLast = index === questions.length - 1;
-  nextBtn.textContent = isLast ? "Finish" : "Next Question";
-  nextBtn.style.display = "none";
-
-  // Next button behavior
-  nextBtn.addEventListener("click", () => {
-    if (isLast) {
-      showFinalScore();
-    } else {
-      loadNext();
-    }
-  });
-
-  btn.addEventListener("click", () => checkAnswer(q, section, btn, nextBtn));
+  btn.addEventListener("click", () => checkAnswer(q, section, btn));
 
   section.appendChild(optionsDiv);
   section.appendChild(btn);
-  section.appendChild(nextBtn);
-
   quizEl.appendChild(section);
 }
 
-function checkAnswer(q, section, btn, nextBtn) {
-  const options = section.querySelectorAll(".option-label");
+function checkAnswer(q, section, btn) {
   const selected = section.querySelector(`input[name="q${currentIndex}"]:checked`);
-
   if (!selected) {
     alert("⚠️ Please select an answer.");
     return;
   }
 
-  options.forEach((optLabel) => {
-    const input = optLabel.querySelector("input");
-    const feedback = optLabel.querySelector(".option-feedback");
-    const icon = optLabel.querySelector(".option-icon");
-    feedback.style.display = "inline-block";
-    feedback.textContent = " → " + q.explanation[input.value];
+  const chosen = selected.value;
+  const correct = chosen === q.answer;
 
-    if (input.value === q.answer) {
-      feedback.style.color = "green";
-      optLabel.classList.add("correct-option");
-      icon.textContent = " ✅";
-    } else {
-      feedback.style.color = "red";
-      optLabel.classList.add("wrong-option");
-      icon.textContent = " ❌";
-    }
-    input.disabled = true;
+  // Save user's choice
+  userAnswers.push({
+    question: q.question,
+    code: q.code || "",
+    userAnswer: chosen,
+    correctAnswer: q.answer,
+    allExplanations: q.explanation,
+    isCorrect: correct
   });
 
-  if (selected.value === q.answer) {
+  if (correct) {
     correctCount++;
     correctSound.play();
   } else {
     wrongSound.play();
   }
 
-  btn.style.display = "none";
-  nextBtn.style.display = "inline-block";
-}
+  const feedback = document.createElement("p");
+  feedback.innerHTML = correct
+    ? `✅ Correct! ${q.explanation[chosen]}`
+    : `❌ Wrong! ${q.explanation[chosen]}`;
+  feedback.className = correct ? "feedback-correct" : "feedback-wrong";
+  section.appendChild(feedback);
 
-function loadNext() {
-  currentIndex++;
-  if (currentIndex < questions.length) {
-    showQuestion(currentIndex);
-  } else {
-    showFinalScore();
-  }
+  btn.style.display = "none";
+
+  const nextBtn = document.createElement("button");
+  nextBtn.className = "next-btn";
+  const isLast = currentIndex === questions.length - 1;
+  nextBtn.textContent = isLast ? "Finish Quiz" : "Next Question";
+
+  nextBtn.addEventListener("click", () => {
+    if (isLast) {
+      showFinalScore();
+    } else {
+      currentIndex++;
+      showQuestion(currentIndex);
+    }
+  });
+
+  section.appendChild(nextBtn);
 }
 
 function showFinalScore() {
   quizEl.innerHTML = "";
   const percent = Math.round((correctCount / questions.length) * 100);
   scoreEl.hidden = false;
-  scoreEl.textContent = `🎉 You scored ${correctCount} out of ${questions.length} (${percent}%)`;
+  scoreEl.innerHTML = `🎉 You scored <strong>${correctCount}</strong> out of <strong>${questions.length}</strong> (${percent}%)`;
 
-  if (percent === 100) {
+  if (percent >= 70) {
     launchConfetti();
+    setTimeout(() => victorySound.play(), 400);
   }
+
+  const reviewSection = document.createElement("div");
+  reviewSection.className = "review-section";
+
+  userAnswers.forEach((item, idx) => {
+    const div = document.createElement("div");
+    div.className = "review-item";
+
+    let optionsHtml = "";
+    for (const [option, exp] of Object.entries(item.allExplanations)) {
+      const isCorrect = option === item.correctAnswer;
+      optionsHtml += `
+        <p class="${isCorrect ? "correct-option" : "wrong-option"}">
+          <strong>${option}:</strong> ${exp}
+        </p>`;
+    }
+
+    div.innerHTML = `
+      <div class="question-box">
+        <h3>Question ${idx + 1}: ${item.question}</h3>
+        ${item.code ? `<pre><code class="language-python">${item.code}</code></pre>` : ""}
+        <p><strong>Your answer:</strong> ${item.userAnswer} ${item.isCorrect ? "✅" : "❌"}</p>
+        <p><strong>Correct answer:</strong> ${item.correctAnswer}</p>
+        <div class="explanations">
+          <h4>All options explained:</h4>
+          ${optionsHtml}
+        </div>
+      </div>
+    `;
+    reviewSection.appendChild(div);
+  });
+
+  quizEl.appendChild(reviewSection);
 }
 
-// Confetti function
 function launchConfetti() {
   confetti({
     particleCount: 200,
@@ -333,3 +341,6 @@ function launchConfetti() {
 
 // Start quiz
 showQuestion(currentIndex);
+
+
+

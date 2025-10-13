@@ -20,6 +20,63 @@
     .wrong{color:#c0392b}
     .score{margin-top:18px;padding:12px;background:#f1f8ff;border:1px solid #dbeefe;border-radius:8px}
 
+    /* Summary / Review Section Styling */
+.review-section {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 10px;
+}
+
+/* Each question box */
+.review-item {
+  background: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px 25px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Make each question title pop */
+.review-item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+/* Explanations section */
+.explanations {
+  margin-top: 12px;
+  background-color: #f8fafc;
+  padding: 12px 15px;
+  border-radius: 10px;
+}
+
+/* Option feedback text */
+.correct-option {
+  color: #0f766e;
+  background-color: #ecfdf5;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin: 6px 0;
+}
+
+.wrong-option {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin: 6px 0;
+}
+
 /* Correct & wrong highlights */
 .correct-option {
   background-color: #d4edda; /* light green */
