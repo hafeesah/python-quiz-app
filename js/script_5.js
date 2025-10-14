@@ -68,18 +68,20 @@ my_tuple[1] = 50`,
     }
   },
   {
-    question: "Which is the correct way of copying list 'list1' into another list 'list2'?",
-    options: ["list2 = list1.copy()",
-         "list1 = list2",
-         "list2 = list2(list1)", 
-         "None of the Above"],
-    answer: "list2 = list1.copy()",
-    explanation: {
-      "list2 = list1.copy()": "copy() is the correct way of copying a list.",
-      "list1 = list2": ".",
-      "It only works with numbers": "Recursion works with any data type or problem structure.",
-      "It returns infinite loops always": "Only happens if you forget to add a base case."
-    }
+  question: "Which is the correct way of copying list 'list1' into another list 'list2'?",
+  options: [
+    "list2 = list1.copy()",
+    "list1 = list2",
+    "list2 = list2(list1)",
+    "None of the Above"
+  ],
+  answer: "list2 = list1.copy()",
+  explanation: {
+    "list2 = list1.copy()": "The copy() method creates a shallow copy of list1 without linking both lists.",
+    "list1 = list2": "This just makes list1 and list2 refer to the same list object — changes to one affect the other.",
+    "list2 = list2(list1)": "Invalid syntax — you can’t call a list like a function.",
+    "None of the Above": "There is a valid method (copy()), so this is incorrect."
+  }
   },
   {
     question: "What is the proper way to access a range of items excluding the first two and the last element of the given list?",
