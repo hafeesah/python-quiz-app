@@ -4,171 +4,162 @@ const wrongSound = new Audio("sounds/wrong.mp3");
 
 // Questions
 const questions = [
-{
-    question: "What keyword do we use to define a function?",
-    options: ["print", "def", "call", "None of the above"],
-    answer: "def",
+  {
+    question: "How can you create empty list?",
+    options: ["list3{}", "list3()", "list3[]", "None of the above"],
+    answer: "list3[]",
     explanation: {
-      "print": "This is used to display output, not define a function.",
-      "def": "Correct! Functions in Python are defined using the 'def' keyword.",
-      "call": "This is how you use a function, not how you define it.",
-      "None of the above": "Incorrect. 'def' is the right answer."
+      "list3{}": "The curly bracket is used to create ditionaries.",
+      "list3()": "This curved bracket are used to create turples.",
+      "list3[]": "The squared bracket is used to create a list.",
+      "None of the above": "There is an answer in the options listed above"
     }
   },
   {
-    question: "What is the name of the function in the given function definition?",
-    code: `def greet(name):
-    print("Hello, " + name)`,
-    options: ["def", "greet", "name", "All of the above"],
-    answer: "greet",
-    explanation: {
-      "def": "This is used to initialise the function.",
-      "greet": "The function name comes right after the def keyword.",
-      "name": "This is the parameter and it is used to pass value to the given function.",
-      "All of the above": "Only one option above is applicable."
+     question: "What is the result of this slice?",
+  code: `letters = ['a', 'b', 'c', 'd', 'e']
+print(letters[:3])`,
+  options: ["['a', 'b', 'c']", "['a', 'b', 'c', 'd']", "['b', 'c', 'd']", "Error"],
+  answer: "['a', 'b', 'c']",
+  explanation: {
+    "['a', 'b', 'c']": "Correct. Omitting the start index means start from 0.",
+    "['a', 'b', 'c', 'd']": "The slice stops before index 3.",
+    "['b', 'c', 'd']": "That would be [1:4].",
+    "Error": "No error here."
     }
   },
   {
-    question: "How can we call the function defined below?",
-    code: `def add(n1,n2):
-    sum = n1 % n2
-    return sum`,
-    options: ["add()", "add(2,4)", "add", "All of the above"],
-    answer: "add(2,4)",
+    question: "What will be the output of this nested list indexing?",
+    code: `matrix = [[1, 2], [3, 4], [5, 6]]
+print(matrix[2][0])`,
+    options: ["1", "3", "5", "6"],
+    answer: "5",
     explanation: {
-      "add()": "No parameters has been added to the bracket.",
-      "add(2,4)": "To call a function, we simply type the function name with appropriate parameters.",
-      "add": "No added parameter.",
-      "All of the above": "Only one option above is applicable."
+    "1": "That’s matrix[0][0].",
+    "3": "That’s matrix[1][0].",
+    "5": "Correct. The third list is [5,6] and index 0 gives 5.",
+    "6": "That’s matrix[2][1]."
     }
   },
   {
-    question: "What will be the output of the following block of code?",
-    code: `def subtract(n1, n2):
-    difference = n1 - n2
-    print(difference)
-
-num1 = 20
-subtract(num1, 10)`,
-    options: ["-5", "10", "30", "5"],
-    answer: "10",
+    question: "What is the correct way to access the last element of the given list?",
+    code: `numbers = [1, 2, 3, 4, 5]`,
+    options: ["numbers[1]", "numbers[5]", "numbers[-1]", "numbers[0]"],
+    answer: "numbers[-1]",
     explanation: {
-      "-5": "Not quite right.",
-      "10": "Because 20 has been stored into num1 and since we are calling the subtraction function, the difference between num1 and 10 is 10.",
-      "30": "That is the sum of num1 and 10.",
-      "5": "Not quite right."
+      "numbers[1]": "This would access the second element.",
+      "numbers[5]": "This would access the sicth element. But there are only 5 element.",
+      "numbers[-1]": "If you count from backwards -1 can be used to access the last element.",
+      "numbers[0]": "This would access the first element."
     }
   },
   {
-    question: "Which of the following are built-in python function?",
-    options: [
-      "print()",
-      "input()",
-      "type()",
-      "All of the above"
-    ],
-    answer: "All of the above",
-    explanation: {
-      "print()": "It is a bulit-in but not the only one.",
-      "input()": "It is a bulit in but not the only one.",
-      "type()": "It is a built-in but not the only one.",
-      "All of the Above": "Every option is correct."
+   question: "What is the output of this code?",
+   code: `my_tuple = (10, 20, 30)
+my_tuple[1] = 50`,
+   options: ["(10, 50, 30)", "(10, 20, 30)", "Error", "None"],
+   answer: "Error",
+   explanation: {
+    "(10, 50, 30)": "Tuples are immutable and cannot be changed.",
+    "(10, 20, 30)": "This was the original tuple but the code produces an error.",
+    "Error": "Correct. Attempting to assign to a tuple index raises an error.",
+    "None": "No return value is produced here."
     }
   },
   {
-    question: "Which is true about recursion in Python?",
-    options: ["Functions can call themselves",
-         "It is not allowed in Python",
-         "It only works with numbers", 
-         "It returns infinite loops always"],
-    answer: "Functions can call themselves",
+    question: "Which is the correct way of copying list 'list1' into another list 'list2'?",
+    options: ["list2 = list1.copy()",
+         "list1 = list2",
+         "list2 = list2(list1)", 
+         "None of the Above"],
+    answer: "list2 = list1.copy()",
     explanation: {
-      "Functions can call themselves": "Recursive functions call themselves unti a base condition stops them.",
-      "It is not allowed in Python": "Python supports recursion.",
+      "list2 = list1.copy()": "copy() is the correct way of copying a list.",
+      "list1 = list2": ".",
       "It only works with numbers": "Recursion works with any data type or problem structure.",
       "It returns infinite loops always": "Only happens if you forget to add a base case."
     }
   },
   {
-    question: "What will be the result of the following code?",
-    code: `def my_func():
-    a = 5
-
-my_func()
-print(a)`,
-    options: ["0", "NameError", "5", "None of the above"],
-    answer: "NameError",
+    question: "What is the proper way to access a range of items excluding the first two and the last element of the given list?",
+    code: `numbers = [1, 3, 5, 2, 7, 10, 45]`,
+    options: ["numbers[2:-1]", "numbers[3:-1]", "numbers[1:-2]", "None of the above"],
+    answer: "numbers[2:-1]",
     explanation: {
-      "0": "Not quite right.",
-      "NameError": "Name 'a' has not been defined.",
-      "5": "Not quite right.",
+      "numbers[2:-1]": "This would slice the list from the third element until the second last element.",
+      "numbers[3:-1]": "This would slice the list from the fourth element until the second last element.",
+      "numbers[1:-2]": "This would slice the list from the second elements until the third last element.",
       "None of the above": "There is an answer amongst the options above."
     }
   },
   {
-    question: "Complete the following code",
-    code: `def greet(name)`,
-    options: [".", ":", ";", "None of the above"],
-    answer: ":",
-    explanation: {
-      ".": "Not quite right.",
-      ":": "A colon comes right after function declaration.",
-      ";": "Not quite right.",
-      "None of the above": "One of the option is correct."
+     question: "What is the output of the following code?",
+     code: `my_list = [10, 20, 30, 40]
+print(my_list[1])`,
+     options: ["10", "20", "30", "40"],
+     answer: "20",
+     explanation: {
+    "10": "Index 0 refers to the first element.",
+    "20": "Correct! Indexing starts at 0, so index 1 is 20.",
+    "30": "Index 2 refers to 30.",
+    "40": "Index 3 refers to 40."
     }
   },
   {
-    question: "What is the scope of a variable defined inside a function",
-    options: ["Global", "Local", "Class-Level", "Static"],
-    answer: "Local",
-    explanation: {
-      "Global": "Unless explicitly declared global.",
-      "Local": "Variables defined inside a function are local to the function.",
-      "Class-level": "Not related here.",
-      "Static": "Not a python keyword for variables."
+    question: "What is the output of this tuple slicing?",
+    code: `t = (0, 1, 2, 3, 4, 5)
+print(t[::2])`,
+   options: ["(0, 2, 4)", "(1, 3, 5)", "(0, 1, 2)", "Error"],
+   answer: "(0, 2, 4)",
+   explanation: {
+    "(0, 2, 4)": "Correct. ::2 takes every second element starting from index 0.",
+    "(1, 3, 5)": "That would start from index 1.",
+    "(0, 1, 2)": "That stops too early.",
+    "Error": "This is valid slicing syntax."
     }
   },
   {
-    question: "Which statement is true about lambda functions?",
-    options: ["They can only have one expression",
-         "They must use def", 
-         "They are faster than normal functions always",
-          "They can contain multiple statements"],
-    answer: "They can only have one expression",
+    question: "What is the difference between append() and extend() in lists?",
+    options: [
+    "append() adds one element; extend() adds multiple elements",
+    "They are exactly the same",
+    "append() creates a new list",
+    "extend() removes elements"
+  ],
+    answer: "append() adds one element; extend() adds multiple elements",
     explanation: {
-      "They can only have one expression": "Lamba is for short, anonymous functions with one expression.",
-      "They must use def": "Lambda does not use def.",
-      "They are faster than normal functions always": "Not always true.",
-      "They can contain multiple statements": "They are limited to one expression."
+    "append() adds one element; extend() adds multiple elements": "Correct. append() adds a single item, extend() adds elements from another iterable.",
+    "They are exactly the same": "No, they behave differently.",
+    "append() creates a new list": "It modifies the list in place.",
+    "extend() removes elements": "It adds elements instead."
     }
   },
   {
-    question: "What will be the output of this code?",
-    code: `def square(x):
-    double = x * x
-    return double
-
-result = square(4)
-print(result)
-`,
-    options: ["16", "Error", "8", "None"],
-    answer: "16",
-    explanation: {
-      "16": " The result of 4*4 is 16.",
-      "Error": "This code is valid, no error.",
-      "8": "Wrong calculation.",
-      "None": "There is an answer in the option."
+    question: "What will this code output?",
+    code: `x = [1, 2, 3]
+x[1] = 99
+print(x)`,
+   options: ["[1, 99, 3]", "[1, 2, 3]", "Error", "(1, 99, 3)"],
+   answer: "[1, 99, 3]",
+   explanation: {
+    "[1, 99, 3]": "Lists are mutable, so you can change elements.",
+    "[1, 2, 3]": "The second element was changed to 99.",
+    "Error": "No error occurs here.",
+    "(1, 99, 3)": "Curved bracket represent tuples, not lists."
     }
   },
   {
-    question: "What happens if a function has no return statement?",
-    options: ["Returns 0", "Returns None", "Returns Error", "Returns last value printed"],
-    answer: "Returns None",
-    explanation: {
-      "Returns 0": "Not quite right.",
-      "Returns None": "Functions without return automatically return None.",
-      "Returns Error": "No error occurs.",
-      "Returns last value printed": "Printing does not affect return."
+    question: "What happens when you use the + operator on two lists?",
+    code: `a = [1, 2]
+b = [3, 4]
+print(a + b)`,
+   options: ["[1, 2, 3, 4]", "[4, 6]", "[[1, 2], [3, 4]]", "Error"],
+   answer: "[1, 2, 3, 4]",
+   explanation: {
+    "[1, 2, 3, 4]": "Correct. The + operator concatenates lists.",
+    "[4, 6]": "That would be element-wise addition, not supported for lists.",
+    "[[1, 2], [3, 4]]": "That’s what happens if you nest them manually.",
+    "Error": "This is valid syntax."
     }
   }
 ];
