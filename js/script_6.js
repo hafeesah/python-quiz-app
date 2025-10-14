@@ -6,196 +6,172 @@ const victorySound = new Audio("sounds/victory.mp3");
 // Questions
 const questions = [
   {
-   question: "How can you make an infinite loop in Python?",
-   options: [
-    "while True:",
-    "for i in range(infinity):",
-    "while (1 == 2):",
-    "while 0:"
-  ],
-  answer: "while True:",
+   question: "Which of the following is an immutable data type?",
+   options: ["List", "Turples", "Sets", "Dictionaries"],
+   answer: "Turples",
   explanation: {
-    "while True:": "The condition True is always true, creating an infinite loop.",
-    "for i in range(infinity):": "Python’s range() cannot take ‘infinity’.",
-    "while (1 == 2):": "This condition is always false.",
-    "while 0:": "0 is treated as False, so this never runs."
+    "List": "They are mutable meaning their items can be changed.",
+    "Turples": "They are immutable since their items cannot be changed.",
+    "Sets": "They are mutable, but their elements must be immutable.",
+    "Dictionaries": "Just like List, they are mutable meaning their items can be changed."
     }
   },
   {
     question: "What will be the output of the following block of code?",
-    code: `my_range = range(1, 5)
-a = 0
-for val in my_range:
-    a +=1
-print(a)`,
-    options: ["5", "4", "0", "6"],
-    answer: "4",
+    code: `result = 'a' in 'Hello'
+print(result)`,
+    options: ["False", "True", "Error", "None of the above"],
+    answer: "False",
     explanation: {
-      "5": "Not quite right.",
-      "4": "The range()function return will iterate the loop 4 times, so the value stored in a wil be added 1 four times.",
-      "0": "Not quite right.",
-      "6": "Not quite right."
+      "False": "The substring does not exist within the given string.",
+      "True": "The substring does not exist within the given code so it does not return True.",
+      "Error": "The code will not return error message.",
+      "None of the above": "Not quite right."
     }
   },
   {
-    question: "What will be the output of this code?",
-  code: `count = 0
-while count < 3:
-    print(count)
-    count += 1`,
-  options: ["0 1 2", "1 2 3", "0 1 2 3", "Infinite loop"],
-  answer: "0 1 2",
-  explanation: {
-    "0 1 2": "The loop runs while count < 3, printing 0, 1, and 2.",
-    "1 2 3": "The loop starts at 0, not 1.",
-    "0 1 2 3": "The loop condition stops before count reaches 3.",
-    "Infinite loop": "The counter increases by 1 each time, so it stops properly."
+     question: "Which of these creates an empty set?",
+     options: ["s = {}", "s = []", "s = set()", "s = emptyset()"],
+     answer: "s = set()",
+     explanation: {
+    "s = {}": "Creates an empty dictionary, not a set.",
+    "s = []": "Creates an empty list.",
+    "s = set()": "Correct! This is how to make an empty set in Python.",
+    "s = emptyset()": "There’s no such built-in function."
     }
   },
   {
-   question: "What is the output of the following for loop?",
-  code: `for i in range(1, 5):
-    print(i)`,
-  options: ["1 2 3 4 5", "0 1 2 3 4", "1 2 3 4", "None of the above"],
-  answer: "1 2 3 4",
+   question: "What is the output of the following of the following code?",
+  code: `my_set = {1, 2}
+my_set.update([2, 3, 5])
+my_set.add(2)
+print(my_set)`,
+  options: ["{1, 2, 2, 2, 3, 5}", "{1, 2, 3, 5}", "{1, 2, 2, 3, 5, 2}", "None of the above"],
+  answer: "{1, 2, 3, 5}",
   explanation: {
-    "1 2 3 4 5": "range(1,5) goes up to but does not include 5.",
-    "0 1 2 3 4": "Starts at 1, not 0.",
-    "1 2 3 4": "Correct. range(1,5) gives 1,2,3,4.",
+    "{1, 2, 2, 2, 3, 5}": "Sets is unique and removes any duplicate.",
+    "{1, 2, 3, 5}": ".update will add multiple elements, while .add will add single elements. however, sets are uniques, it has no duplicate so '2' will only be added once.",
+    "{1, 2, 2, 3, 5, 2}": "Sets is unique and removes any duplicate.",
     "None of the above": "There is a correct answer above."
     }
   },
   {
-  question: "Which statement will immediately end a loop?",
-  options: ["stop", "exit", "break", "continue"],
-  answer: "break",
+  question: "What is the correct way to create a dictionary in Python?",
+  options: [
+    "my_dict = {'name': 'Alice', 'age': 25}",
+    "my_dict = ['name', 'Alice', 'age', 25]",
+    "my_dict = ('name': 'Alice', 'age': 25)",
+    "my_dict = {'name', 'Alice', 'age', 25}"
+  ],
+  answer: "my_dict = {'name': 'Alice', 'age': 25}",
   explanation: {
-    "stop": "Not a Python keyword for loops.",
-    "exit": "Can exit the program but not just the loop.",
-    "break": "Correct. ‘break’ stops the loop immediately.",
-    "continue": "Skips to the next iteration but doesn’t stop the loop."
+    "my_dict = {'name': 'Alice', 'age': 25}": "✅ Correct! Dictionaries use curly braces with key-value pairs separated by colons.",
+    "my_dict = ['name', 'Alice', 'age', 25]": "❌ This creates a list, not a dictionary.",
+    "my_dict = ('name': 'Alice', 'age': 25)": "❌ Tuples use parentheses, and this syntax is invalid.",
+    "my_dict = {'name', 'Alice', 'age', 25}": "❌ Missing key-value pair structure — this makes a set, not a dictionary."
   }
   },
- {
-  question: "What will be the final value i in the following program?",
-  code: `n = 3
-i = 1
-
-while i <= n:
-  i = i + 1
-print(i)`,
-  options: ["3", "4", "1", "None of the above"],
-  answer: "4",
+  {
+  question: "What will be the output of the following?",
+  code: `squares = {1:1, 2:4, 3:9}
+  
+for i in squares:
+  if i == 3:
+     print(squares[i])`,
+  options: ["3", "4", "9", "None of the above"],
+  answer: "9",
   explanation: {
     "3": "Not quite right.",
-    "4": "i was initially stored has 1 and the with each iteration, it increases by 1 till the condition is met.",
-    "1": "Not quite right",
+    "4": "4 is not the corresponding value of key'3'.",
+    "9": "Here in each code, we only iterate through each key not the values, The corresponding value, whose key equals 3 is then printed.",
     "None of the above": "There is an answer in the above options."
   }
-},
- {
-  question: "What will this code print?",
-  code: `for i in range(3):
-    print("Hello")`,
-  options: [
-    "Prints Hello once",
-    "Prints Hello three times",
-    "Prints Hello infinitely",
-    "Error"
-  ],
-  answer: "Prints Hello three times",
+  },
+  {
+  question: "Which of the following methods removes all items from a dictionary?",
+  options: ["clear()", "delete()", "pop()", "removeAll()"],
+  answer: "clear()",
   explanation: {
-    "Prints Hello once": "The loop runs three times (0,1,2).",
-    "Prints Hello three times": "It prints Hello on each iteration.",
-    "Prints Hello infinitely": "range(3) is finite.",
-    "Error": "The syntax is valid."
+    "clear()": "clear() removes all key-value pairs from a dictionary.",
+    "delete()": "Not a dictionary method in Python.",
+    "pop()": "Removes a single key-value pair, not all.",
+    "removeAll()": "No such method exists for dictionaries."
   }
   },
   {
-   question: "Which of the following loops will never execute its body?",
-   code: `x = 10
-while x < 5:
-    print(x)`,
-   options: [
-    "This one",
-    "while True:",
-    "for i in range(5):",
-    "while x > 0:"
+   question: "What is the result of this code?",
+   code:`my_set = {1, 2, 3, 2, 1}
+print(my_set)`,
+  options: ["{1, 2, 3, 2, 1}", "{1, 2, 3}", "[1, 2, 3]", "(1, 2, 3)"],
+  answer: "{1, 2, 3}",
+  explanation: {
+    "{1, 2, 3, 2, 1}": "Sets automatically remove duplicates.",
+    "{1, 2, 3}": "Correct! Sets store only unique elements.",
+    "[1, 2, 3]": "This represents a list, not a set.",
+    "(1, 2, 3)": "This represents a tuple, not a set."
+    }
+  },
+  {
+     question: "How do you access the value associated with the key 'color' in a dictionary called car?",
+     options: [
+    "car['color']",
+    "car.color",
+    "car.get(color)",
+    "get.car('color')"
   ],
-   answer: "This one",
+     answer: "car['color']",
+     explanation: {
+    "car['color']": "Square brackets are used to access a value by key in a dictionary.",
+    "car.color": "Only works with objects, not regular dictionaries.",
+    "car.get(color)": "The key should be in quotes: car.get('color').",
+    "get.car('color')": "Invalid syntax in Python."
+    }
+  },
+  {
+    question: "What will this code print?",
+    code: `my_dict = {'a':1, 'b':2}
+print('c' in my_dict)`,
+   options: ["True", "False", "Error", "None"],
+   answer: "False",
    explanation: {
-    "This one": "x = 10, and 10 < 5 is false from the start.",
-    "while True:": "This one runs infinitely.",
-    "for i in range(5):": "Runs five times.",
-    "while x > 0:": "Would run as long as x > 0."
+    "True": "'c' is not a key in the dictionary.",
+    "False": "Correct! The 'in' keyword checks if a key exists in a dictionary.",
+    "Error": "The code runs fine.",
+    "None": "'in' returns a boolean, not None."
     }
   },
   {
-    question: "What does range(5, 0, -1) produce?",
-    options: [
-    "5 4 3 2 1",
-    "0 1 2 3 4 5",
-    "Error",
-    "1 2 3 4 5"
-  ],
-  answer: "5 4 3 2 1",
-  explanation: {
-    "5 4 3 2 1": "Starts at 5, stops before 0, steps by -1.",
-    "0 1 2 3 4 5": "That would be range(6).",
-    "Error": "Negative step is allowed.",
-    "1 2 3 4 5": "That would be range(1,6)."
-    }
-  },
-  {
-    question: "What will be the output of the following code?",
-    code:`str1 = 'Hello'
-for s in str1:
-    if s == 'o'
-       print(s)
-    else:
-       continue`,
-    options: ["o", "0", "Error", "s"],
-    answer: "o",
-    explanation: {
-      "o": "The for loop will iterate over the string str1 until the condition matches the value of s at a particular iteration, then it will be displayed.",
-      "0": "Not quite right.",
-      "Error": "The code is correct.",
-      "s": "s will only be printed if there was a quotation mark to represent a string."
-    }
-  },
-  {
-  question: "What is the output of the following code?",
-  code: `for i in range(2):
-    for j in range(2):
-        print(i, j)`,
+ question: "Which statement correctly adds a new key-value pair to a dictionary?",
   options: [
-    "(0,0) (0,1) (1,0) (1,1)",
-    "(1,1) (1,2) (2,1) (2,2)",
-    "(0,0) (1,1)",
-    "Error"
+    "my_dict['country'] = 'Canada'",
+    "my_dict.add('country', 'Canada')",
+    "add(my_dict, 'country', 'Canada')",
+    "my_dict.append({'country': 'Canada'})"
   ],
-  answer: "(0,0) (0,1) (1,0) (1,1)",
+  answer: "my_dict['country'] = 'Canada'",
   explanation: {
-    "(0,0) (0,1) (1,0) (1,1)": "Nested loops print all combinations of i and j.",
-    "(1,1) (1,2) (2,1) (2,2)": "range(2) gives only 0 and 1.",
-    "(0,0) (1,1)": "Missing pairs.",
-    "Error": "Code runs fine."
+    "my_dict['country'] = 'Canada'": "You can add or update a key by simple assignment.",
+    "my_dict.add('country', 'Canada')": "No 'add()' method exists for dictionaries.",
+    "add(my_dict, 'country', 'Canada')": "Not valid syntax.",
+    "my_dict.append({'country': 'Canada'})": "append() is a list method, not dictionary."
   }
   },
   {
-    question: "What is the main purpose of the 'break' statement?",
-    options: ["Stop execution of program for 1 second",
-              "Terminate the loop immediately",
-              "Skip the rest of the code for the current iteration only",
-              "Terminate the whole program"],
-    answer: "Terminate the loop immediately",
-    explanation: {
-      "Stop execution of program for 1 second": "Not quite right.",
-      "Terminate the loop immediately": "When the 'break' statement is encountered the loop automatically terminate.",
-      "Skip the rest of the code for the current iteration only": "This is only true for the 'continue' statement.",
-      "Terminate the whole program": "The 'break' statement does not affect the whole program."
-    }
+    question: "Which of these statements about sets is TRUE?",
+  options: [
+    "Sets allow duplicate elements",
+    "Sets are ordered collections",
+    "Sets are mutable",
+    "Sets can contain lists"
+  ],
+  answer: "Sets are mutable",
+  explanation: {
+    "Sets allow duplicate elements": "Sets automatically remove duplicates.",
+    "Sets are ordered collections": "Sets are unordered.",
+    "Sets are mutable": "You can add or remove elements from a set.",
+    "Sets can contain lists": "Lists are unhashable and cannot be in a set."
   }
+  },
 ];
 let currentIndex = 0;
 let correctCount = 0;
